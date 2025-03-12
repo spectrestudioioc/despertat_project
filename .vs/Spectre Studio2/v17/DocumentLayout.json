@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\darie\\Spectre Studio2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|c:\\users\\darie\\spectre studio2\\assets\\easystart third person controller\\scripts\\pickupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|solutionrelative:assets\\easystart third person controller\\scripts\\pickupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|C:\\Users\\darie\\Spectre Studio2\\assets\\easystart third person controller\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|solutionrelative:assets\\easystart third person controller\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|C:\\Users\\darie\\Spectre Studio2\\assets\\easystart third person controller\\scripts\\thirdpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|solutionrelative:assets\\easystart third person controller\\scripts\\thirdpersoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|C:\\Users\\darie\\Spectre Studio2\\assets\\easystart third person controller\\scripts\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EFC2CE3-3392-75D9-3A74-352103061058}|Assembly-CSharp.csproj|solutionrelative:assets\\easystart third person controller\\scripts\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PickupController.cs",
+              "DocumentMoniker": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\PickupController.cs",
+              "RelativeDocumentMoniker": "Assets\\EasyStart Third Person Controller\\Scripts\\PickupController.cs",
+              "ToolTip": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\PickupController.cs",
+              "RelativeToolTip": "Assets\\EasyStart Third Person Controller\\Scripts\\PickupController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwCsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:48:56.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\EasyStart Third Person Controller\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\EasyStart Third Person Controller\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:22:05.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ThirdPersonController.cs",
+              "DocumentMoniker": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\ThirdPersonController.cs",
+              "RelativeDocumentMoniker": "Assets\\EasyStart Third Person Controller\\Scripts\\ThirdPersonController.cs",
+              "ToolTip": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\ThirdPersonController.cs",
+              "RelativeToolTip": "Assets\\EasyStart Third Person Controller\\Scripts\\ThirdPersonController.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAkwMcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:04:57.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CameraController.cs",
+              "DocumentMoniker": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\CameraController.cs",
+              "RelativeDocumentMoniker": "Assets\\EasyStart Third Person Controller\\Scripts\\CameraController.cs",
+              "ToolTip": "C:\\Users\\darie\\Spectre Studio2\\Assets\\EasyStart Third Person Controller\\Scripts\\CameraController.cs",
+              "RelativeToolTip": "Assets\\EasyStart Third Person Controller\\Scripts\\CameraController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwEoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T23:03:32.232Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
