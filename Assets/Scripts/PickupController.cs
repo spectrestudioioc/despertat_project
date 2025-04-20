@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
-    private GameManager gameManager; // Referència al GameManager
+    private GameManager gameManager; // Referència a un component GameManager
 
     public bool areaPickup;
 

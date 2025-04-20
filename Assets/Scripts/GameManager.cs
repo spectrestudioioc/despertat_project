@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton per accedir fàcilment al GameManager
     public TextMeshProUGUI pickupText;
-    
+
+    public Slider healthSlider; 
+
 
     private void Awake()
     {
