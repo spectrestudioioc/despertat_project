@@ -63,15 +63,21 @@
     <Compile Include="Assets\Scripts\PickupController.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedCameraController.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Fader.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\GameManager.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\LevelManager.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\ThirdPersonController.cs" />
 =======
+=======
+>>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\EnemyCollider.cs" />
+<<<<<<< HEAD
+>>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
+=======
 >>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
@@ -444,6 +450,7 @@
     </Reference>
     <Reference Include="Unity.Android.Types">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -454,6 +461,8 @@
     <Reference Include="Unity.Android.GradleProject">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
 =======
+=======
+>>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -463,6 +472,9 @@
     </Reference>
     <Reference Include="Unity.Android.GradleProject">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
+=======
 >>>>>>> 8df70f2a7c8781f7b553602408eeef9d9821aad2
       <Private>False</Private>
     </Reference>
