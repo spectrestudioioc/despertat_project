@@ -62,15 +62,18 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PickupController.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedCameraController.cs" />
-    <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Fader.cs" />
+    <Compile Include="Assets\Scripts\Scripts_Menu\VideoManager.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Scripts_Menu\VolumeController.cs" />
+    <Compile Include="Assets\Scripts\Scripts_Menu\LevelManager.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
-    <Compile Include="Assets\EasyStart Third Person Controller\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\EnemyCollider.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Scripts_Menu\Fader.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Scripts_Menu\DiariGestor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
