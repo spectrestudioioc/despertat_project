@@ -1200,8 +1200,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "cr\xE8dits"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cbc6573bd67fcf84faaf2065e78e2b3f, type: 2}
-  m_sharedMaterial: {fileID: -463720130603050306, guid: cbc6573bd67fcf84faaf2065e78e2b3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a27e086107457ef46bec7d8fbdf17b2f, type: 2}
+  m_sharedMaterial: {fileID: -299126296709653290, guid: a27e086107457ef46bec7d8fbdf17b2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
