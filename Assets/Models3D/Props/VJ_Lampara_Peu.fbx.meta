@@ -3,7 +3,22 @@ guid: 09b30400e44107e439a922fe926e169d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Llum01
+    second: {fileID: 2100000, guid: 7f18bff40b71e8441964582829731394, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Peu_Lampara
+    second: {fileID: 2100000, guid: 923bfe355780efc40a2aed092892f851, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_Tela_Lampara
+    second: {fileID: 2100000, guid: 4d9e323b1126673419fb41764d16711a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

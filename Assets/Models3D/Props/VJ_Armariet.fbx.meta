@@ -3,7 +3,12 @@ guid: 35738423cbd205745bf30fc4a233cef8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VJ_Material_Fusta04
+    second: {fileID: 2100000, guid: f9a41cd9b6dcdd84cac76364c825c622, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
