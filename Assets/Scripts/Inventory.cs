@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     public void Add(String item)
     {
         if (OnAddItem != null) OnAddItem(item);
-        NotificationManager.Instance.ShowNotification($"Afegit <{item}> a l'inventari");
+        
         items.Add(item);
     }
 
@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
     public void Remove(String item)
     {
         if (OnRemoveItem != null) OnRemoveItem(item);
-        NotificationManager.Instance.ShowNotification($"Eliminat <{item}> de l'inventari");
+        
         items.Remove(item);
     }
 
