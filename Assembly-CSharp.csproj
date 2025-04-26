@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\VolumeController.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Loot.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\LevelManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
