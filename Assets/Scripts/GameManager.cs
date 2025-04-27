@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton per accedir fàcilment al GameManager
     public TextMeshProUGUI pickupText;
+    public TextMeshProUGUI enemicText;
+    public TMP_InputField enemicInputField;
 
-    public Slider healthSlider; 
+    public Slider healthSlider;
 
 
     private void Awake()
@@ -43,6 +45,32 @@ public class GameManager : MonoBehaviour
         pickup.gameObject.SetActive(false);
     }
 
+    public void MostraEnemicText(EnemyController enemic)
+    {
+        enemicText.gameObject.SetActive(true); // Assegurem que el text estigui visible
+        enemicText.text = "Prem la tecla E per interactuar amb l'enemic"; // Mostrem el missatge per interactuar amb l'enemic
+    }
 
+    public void AmagaEnemicText(EnemyController enemic)
+    {
+        enemicText.gameObject.SetActive(false); // Assegurem que el text ja no sigui visible       
+    }
+
+    public void MostraEnemicInputField()
+    {
+        Debug.Log("S'ha cridat MostraEnemicInputField");
+        enemicInputField.gameObject.SetActive(true);
+        enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
+        enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
+                                               // Afegir un listener per capturar el text un cop es prem "Enter"
+        enemicInputField.onEndEdit.AddListener(OnInputSubmitted);
+    }
+
+    private void OnInputSubmitted(string userInput)
+    {
+        Debug.Log("Text introduït per l'usuari: " + userInput); // Mostrem el text a la consola
+        // Desactivem el camp d'entrada un cop l'usuari prem Enter
+        enemicInputField.gameObject.SetActive(false);
+    }
 }
 
