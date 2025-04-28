@@ -67,7 +67,7 @@ public class EnemyCollider : MonoBehaviour
         if (areaEnemy && Input.GetKeyDown(KeyCode.E)) // Comprovem si el jugador està dins del trigger i prem la tecla E
         {
             Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
-            gameManager.MostraEnemicInputField();
+            gameManager.MostraEnemicInputField(enemyController);
             //loot.AddToPlayerInventory();
 
         }

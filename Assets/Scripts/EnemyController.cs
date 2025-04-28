@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class EnemyController : MonoBehaviour
 
     public TipusEnemic tipusEnemic;
     public int dany;
+
+    public string paraulaClau;
 
     private PlayerHealth playerHealth; // Referencia a un component PlayerHealth
     
@@ -53,6 +56,30 @@ public class EnemyController : MonoBehaviour
             // Mostrem un missatge a la consola cada vegada que apliquem dany
             Debug.Log($"S'ha aplicat {dany} de dany al jugador. Salut restant: {playerHealth.currentHealth}");
         }
+    }
+
+    public void ComprovarParaulaClau(string userInput)
+    {
+        if (userInput.Equals(paraulaClau, StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log("Paraula clau correcta!");
+            ParaulaCorrecta(); // Aquí es crida el mètode si s'ha encertat la paraula
+        }
+        else
+        {
+            Debug.Log("Paraula clau incorrecta!");
+            ParaulaIncorrecta();
+        }
+    }
+
+    public void ParaulaCorrecta()
+    {
+
+    }
+
+    public void ParaulaIncorrecta()
+    {
+
     }
 
 

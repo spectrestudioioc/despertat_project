@@ -56,20 +56,26 @@ public class GameManager : MonoBehaviour
         enemicText.gameObject.SetActive(false); // Assegurem que el text ja no sigui visible       
     }
 
-    public void MostraEnemicInputField()
+    public void MostraEnemicInputField(EnemyController enemyController)
     {
         Debug.Log("S'ha cridat MostraEnemicInputField");
         enemicInputField.gameObject.SetActive(true);
         enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
         enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
-                                               // Afegir un listener per capturar el text un cop es prem "Enter"
-        enemicInputField.onEndEdit.AddListener(OnInputSubmitted);
+        
+        // Afegir un listener per capturar el text un cop es prem "Enter"
+        enemicInputField.onEndEdit.AddListener((string userInput) => OnInputSubmitted(userInput, enemyController));
     }
 
-    private void OnInputSubmitted(string userInput)
+    private void OnInputSubmitted(string userInput, EnemyController enemyController)
     {
         Debug.Log("Text introduït per l'usuari: " + userInput); // Mostrem el text a la consola
-        // Desactivem el camp d'entrada un cop l'usuari prem Enter
+
+        // Passem la paraula recollida a EnemyController per fer la comparació
+        enemyController.ComprovarParaulaClau(userInput);
+
+        // Netegem i desactivem el camp d'entrada un cop l'usuari prem Enter
+        enemicInputField.text = ""; 
         enemicInputField.gameObject.SetActive(false);
     }
 }
