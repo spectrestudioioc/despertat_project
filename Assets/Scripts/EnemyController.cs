@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
+    private Loot loot; // Referencia a un component Loot
     public bool areaEnemic;
     public enum TipusEnemic
     {
@@ -25,7 +26,8 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager
-            
+        loot = GetComponent<Loot>(); // Inicialitzem la referència al component Loot
+
         // Obtenim la referència al component PlayerHealth
         playerHealth = FindObjectOfType<PlayerHealth>();
 
@@ -74,12 +76,47 @@ public class EnemyController : MonoBehaviour
 
     public void ParaulaCorrecta()
     {
-
+        loot.AddToPlayerInventory();
+        StartCoroutine(MortCombinada());
     }
 
     public void ParaulaIncorrecta()
     {
+        // Aplicar dany al jugador per una paraula incorrecta
+        if (playerHealth != null)
+        {
+            int danyIncorrecte = 25; // Dany que s'aplica per una paraula incorrecta
+            playerHealth.TakeDamage(danyIncorrecte);
+            Debug.Log($"El jugador ha rebut {danyIncorrecte} de dany per paraula incorrecta!");
+        }
+    }
 
+    private IEnumerator MortCombinada()
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Color originalColor = rend.material.color;
+        Vector3 escalaOriginal = transform.localScale;
+
+        float tempsDesintegracio = 2f;  // Durada de la desintegració
+        float tempsTranscorregut = 0f;
+
+        while (tempsTranscorregut < tempsDesintegracio)
+        {
+            tempsTranscorregut += Time.deltaTime;
+
+            // Reduir transparència
+            float alpha = Mathf.Lerp(1f, 0f, tempsTranscorregut / tempsDesintegracio);
+            rend.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            // Reduir la mida
+            float factorEscala = Mathf.Lerp(1f, 0f, tempsTranscorregut / tempsDesintegracio);
+            transform.localScale = escalaOriginal * factorEscala;
+
+            yield return null;  // Espera al següent frame
+        }
+
+        // Desactiva l'enemic després de la mort
+        gameObject.SetActive(false);
     }
 
 

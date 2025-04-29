@@ -8,7 +8,7 @@ public class EnemyCollider : MonoBehaviour
     private GameManager gameManager; // Referència a un component GameManager
     private EnemyController enemyController; // Referència a un component EnemyController
     private bool areaEnemy;
-    private Loot loot; // Referencia a un component Loot
+    
 
     private float damageTimer; // Temporitzador per controlar quan aplicar el dany
     private float damageInterval; // Interval en segons per calcular quan aplicar dany
@@ -18,7 +18,6 @@ public class EnemyCollider : MonoBehaviour
         // Obtenim la referència al component EnemyController de l'objecte pare i l'assignem a enemyController
         enemyController = GetComponentInParent<EnemyController>();
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager
-        loot = GetComponentInParent<Loot>(); // Inicialitzem la referència al component Loot
         areaEnemy = false;
         damageTimer = 0f;
         damageInterval = 3f;
@@ -68,7 +67,7 @@ public class EnemyCollider : MonoBehaviour
         {
             Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
             gameManager.MostraEnemicInputField(enemyController);
-            //loot.AddToPlayerInventory();
+            
 
         }
     }
