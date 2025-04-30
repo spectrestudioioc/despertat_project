@@ -93,7 +93,12 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator MortCombinada()
     {
-        Renderer rend = GetComponent<Renderer>();
+        SkinnedMeshRenderer rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (rend == null)
+        {
+            Debug.LogWarning("SkinnedMeshRenderer no trobat al fill de l'enemic.");
+            yield break;
+        }
         Color originalColor = rend.material.color;
         Vector3 escalaOriginal = transform.localScale;
 
@@ -117,6 +122,8 @@ public class EnemyController : MonoBehaviour
 
         // Desactiva l'enemic després de la mort
         gameObject.SetActive(false);
+
+
     }
 
 
