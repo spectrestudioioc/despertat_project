@@ -34,13 +34,13 @@ public class EnemyController : MonoBehaviour
         switch (tipusEnemic)
         {
             case TipusEnemic.EnemicOmbra:
-                dany = 10;
+                dany = 5;
                 break;
             case TipusEnemic.EnemicRialla:
-                dany = 15;
+                dany = 10;
                 break;
             case TipusEnemic.EnemicGranPena:
-                dany = 20;
+                dany = 15;
                 break;
             default:
                 break;
@@ -76,7 +76,11 @@ public class EnemyController : MonoBehaviour
 
     public void ParaulaCorrecta()
     {
-        loot.AddToPlayerInventory();
+        // Comprova si el component Loot existeix abans de fer alguna cosa amb ell
+        if (loot != null)
+        {
+            loot.AddToPlayerInventory();
+        }
         StartCoroutine(MortCombinada());
     }
 

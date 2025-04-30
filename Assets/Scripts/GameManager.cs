@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public Slider healthSlider;
 
+    public Image diariImatge; // Imatge que per mostrar la pàgina del diari
+
 
     private void Awake()
     {
@@ -43,7 +45,21 @@ public class GameManager : MonoBehaviour
     {
         AmagaPickupText(pickup);
         pickup.gameObject.SetActive(false);
+
+        diariImatge.sprite = pickup.imatgePagina;  // Asigna l'Sprite del pickup a la imatge del CanvasDiari
+        MostraPaginaDiari();
+        
     }
+
+    public void MostraPaginaDiari()
+    {
+        
+        // Fem visible la pàgina del diari
+        diariImatge.gameObject.SetActive(true);
+        diariImatge.GetComponent<Animation>().Play("CanvasDiari");
+    }
+
+    
 
     public void MostraEnemicText(EnemyController enemic)
     {
@@ -62,7 +78,9 @@ public class GameManager : MonoBehaviour
         enemicInputField.gameObject.SetActive(true);
         enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
         enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
-        
+
+        // Eliminem listeners anteriors
+        enemicInputField.onEndEdit.RemoveAllListeners();
         // Afegir un listener per capturar el text un cop es prem "Enter"
         enemicInputField.onEndEdit.AddListener((string userInput) => OnInputSubmitted(userInput, enemyController));
     }
