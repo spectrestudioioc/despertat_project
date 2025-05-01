@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
+    private Loot loot; // Referencia a un component Loot
+    private Transform playerTransform; // Referència al Transform del jugador
     public bool areaEnemic;
     public enum TipusEnemic
     {
@@ -16,29 +19,32 @@ public class EnemyController : MonoBehaviour
     public TipusEnemic tipusEnemic;
     public int dany;
 
+    public string paraulaClau;
+
     private PlayerHealth playerHealth; // Referencia a un component PlayerHealth
-    private Loot loot; // Referencia a un component Loot
+    
 
     private void Start()
     {
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager
-        areaEnemic = false;
-
         loot = GetComponent<Loot>(); // Inicialitzem la referència al component Loot
 
         // Obtenim la referència al component PlayerHealth
         playerHealth = FindObjectOfType<PlayerHealth>();
 
+        // Assignem el Transform del jugador a partir del component PlayerHealth, si existeix
+        playerTransform = playerHealth?.transform;
+
         switch (tipusEnemic)
         {
             case TipusEnemic.EnemicOmbra:
-                dany = 10;
+                dany = 5;
                 break;
             case TipusEnemic.EnemicRialla:
-                dany = 15;
+                dany = 10;
                 break;
             case TipusEnemic.EnemicGranPena:
-                dany = 20;
+                dany = 15;
                 break;
             default:
                 break;
@@ -58,34 +64,90 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ComprovarParaulaClau(string userInput)
     {
-        if (other.CompareTag("Player")) // Comprova si el GameObject que toca és el Player
+        if (userInput.Equals(paraulaClau, StringComparison.OrdinalIgnoreCase))
         {
-            Debug.Log("El player ha entrat al trigger de l'enemic!");
-            
-            areaEnemic = true;
+            Debug.Log("Paraula clau correcta!");
+            ParaulaCorrecta(); // Aquí es crida el mètode si s'ha encertat la paraula
+        }
+        else
+        {
+            Debug.Log("Paraula clau incorrecta!");
+            ParaulaIncorrecta();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void ParaulaCorrecta()
     {
-        if (other.CompareTag("Player")) // Comprova si el GameObject que toca és el Player
+        // Comprova si el component Loot existeix abans de fer alguna cosa amb ell
+        if (loot != null)
         {
-            Debug.Log("El player ha sortit del trigger del pickup!");
-            
-            areaEnemic = false;
+            loot.AddToPlayerInventory();
+        }
+        StartCoroutine(MortCombinada());
+    }
+
+    public void ParaulaIncorrecta()
+    {
+        // Aplicar dany al jugador per una paraula incorrecta
+        if (playerHealth != null)
+        {
+            int danyIncorrecte = 25; // Dany que s'aplica per una paraula incorrecta
+            playerHealth.TakeDamage(danyIncorrecte);
+            Debug.Log($"El jugador ha rebut {danyIncorrecte} de dany per paraula incorrecta!");
         }
     }
 
+    private IEnumerator MortCombinada()
+    {
+        SkinnedMeshRenderer rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (rend == null)
+        {
+            Debug.LogWarning("SkinnedMeshRenderer no trobat al fill de l'enemic.");
+            yield break;
+        }
+        Color originalColor = rend.material.color;
+        Vector3 escalaOriginal = transform.localScale;
+
+        float tempsDesintegracio = 2f;  // Durada de la desintegració
+        float tempsTranscorregut = 0f;
+
+        while (tempsTranscorregut < tempsDesintegracio)
+        {
+            tempsTranscorregut += Time.deltaTime;
+
+            // Reduir transparència
+            float alpha = Mathf.Lerp(1f, 0f, tempsTranscorregut / tempsDesintegracio);
+            rend.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            // Reduir la mida
+            float factorEscala = Mathf.Lerp(1f, 0f, tempsTranscorregut / tempsDesintegracio);
+            transform.localScale = escalaOriginal * factorEscala;
+
+            yield return null;  // Espera al següent frame
+        }
+
+        // Desactiva l'enemic després de la mort
+        gameObject.SetActive(false);
+
+
+    }
     private void Update()
     {
-        if (areaEnemic && Input.GetKeyDown(KeyCode.E)) // Comprovem si el jugador està dins del trigger i prem la tecla E
+        // Si aquest enemic és del tipus GranPena, sempre mirarà cap al jugador
+        if (tipusEnemic == TipusEnemic.EnemicGranPena && playerTransform != null)
         {
-            Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
-            loot.AddToPlayerInventory();
+            Vector3 direccio = playerTransform.position - transform.position;
+            direccio.y = 0f; // Evita inclinació vertical
 
+            if (direccio != Vector3.zero)
+            {
+                Quaternion rotacioDesitjada = Quaternion.LookRotation(direccio) * Quaternion.Euler(0, 180f, 0);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotacioDesitjada, Time.deltaTime * 2f); // Gir suau
+            }
         }
     }
+
 
 }

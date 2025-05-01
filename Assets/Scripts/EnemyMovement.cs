@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     private int currentWaypointIndex = 0;
 
     private NavMeshAgent agent; // Referència al NavMeshAgent
+    
+
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class EnemyMovement : MonoBehaviour
             Debug.LogError("Aquest enemic necessita un NavMeshAgent per moure's!");
             return;
         }
+
+        
 
         agent.speed = speed;  // Assignem la velocitat a l'agent
         agent.autoBraking = false; // Evitem que freni abans d'arribar al waypoint
@@ -47,6 +51,8 @@ public class EnemyMovement : MonoBehaviour
             // Assignem el següent waypoint com a destinació
             MoveToNextWaypoint();
         }
+
+        
     }
 
     private void MoveToNextWaypoint()

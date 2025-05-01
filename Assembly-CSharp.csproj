@@ -64,6 +64,7 @@
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedCameraController.cs" />
     <Compile Include="Assets\Scripts\Float.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\VideoManager.cs" />
+    <Compile Include="Assets\Scripts\AnimationEvents.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\VolumeController.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />

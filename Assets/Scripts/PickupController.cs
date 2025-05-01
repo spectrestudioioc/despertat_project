@@ -6,6 +6,8 @@ public class PickupController : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
 
+    public Sprite imatgePagina;  // Propietat per assignar la imatge del pickup
+
     public bool areaPickup;
 
     private void Start()
