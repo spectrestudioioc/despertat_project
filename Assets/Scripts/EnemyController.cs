@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
     private Loot loot; // Referencia a un component Loot
+    private Transform playerTransform; // Referència al Transform del jugador
     public bool areaEnemic;
     public enum TipusEnemic
     {
@@ -30,6 +31,9 @@ public class EnemyController : MonoBehaviour
 
         // Obtenim la referència al component PlayerHealth
         playerHealth = FindObjectOfType<PlayerHealth>();
+
+        // Assignem el Transform del jugador a partir del component PlayerHealth, si existeix
+        playerTransform = playerHealth?.transform;
 
         switch (tipusEnemic)
         {
@@ -128,6 +132,21 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
 
 
+    }
+    private void Update()
+    {
+        // Si aquest enemic és del tipus GranPena, sempre mirarà cap al jugador
+        if (tipusEnemic == TipusEnemic.EnemicGranPena && playerTransform != null)
+        {
+            Vector3 direccio = playerTransform.position - transform.position;
+            direccio.y = 0f; // Evita inclinació vertical
+
+            if (direccio != Vector3.zero)
+            {
+                Quaternion rotacioDesitjada = Quaternion.LookRotation(direccio) * Quaternion.Euler(0, 180f, 0);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotacioDesitjada, Time.deltaTime * 2f); // Gir suau
+            }
+        }
     }
 
 
