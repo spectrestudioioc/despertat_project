@@ -1,94 +1,50 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Collections;
 
-public class PauseMenuController : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;        // El Canvas del menú de pausa
-    public GameObject defaultButton;      // El primer botón del menú (opcional)
-    public CanvasGroup canvasGroup;       // El CanvasGroup que controlará el fade
-    private bool isPaused = false;        // Estado de la pausa
-    public float fadeDuration = 0.5f;     // Duración del fade en segundos
-
-    void Start()
-    {
-        // Aseguramos que el menú esté oculto al inicio
-        pauseMenuUI.SetActive(false);
-        canvasGroup.alpha = 0f;  // Lo ponemos completamente transparente
-        canvasGroup.blocksRaycasts = false;  // Desactiva la interacción con el UI al inicio
-    }
+    public GameObject menuPausa; // Assigna el panell de pausa des de l'Inspector
+    private bool jocPausat = false;
 
     void Update()
     {
-        // Si presionamos la tecla TAB, alternamos entre pausar o reanudar el juego
+        // Comprova si la tecla "Tab" s'ha premut
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (isPaused)
+            // Si el joc està pausat, es reprèn; si no, es pausa
+            if (jocPausat)
             {
-                ResumeGame();
+                Reprendre();
             }
             else
             {
-                PauseGame();
+                Pausar();
             }
         }
     }
 
-    // Pausar el juego
-    void PauseGame()
+    void Pausar()
     {
-        // Mostrar el menú de pausa con fade
-        pauseMenuUI.SetActive(true);
-        StartCoroutine(FadeMenu(1f));  // Fade In
+        menuPausa.SetActive(true); // Mostra el menú de pausa
+        Time.timeScale = 0f; // Pausa el temps del joc
 
-        // Pausar el tiempo del juego
-        Time.timeScale = 0f;
-        isPaused = true;
+        // Canvia l'estat del cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
-        // Asegurar que el primer botón sea seleccionado
-        if (defaultButton != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);  // Desmarcar cualquier botón seleccionado
-            EventSystem.current.SetSelectedGameObject(defaultButton); // Seleccionar el primer botón
-        }
+        // Marca el joc com a pausat
+        jocPausat = true;
     }
 
-    // Reanudar el juego
-    void ResumeGame()
+    public void Reprendre()
     {
-        // Hacer fade out y ocultar el menú
-        StartCoroutine(FadeMenu(0f));  // Fade Out
+        menuPausa.SetActive(false); // Amaga el menú de pausa
+        Time.timeScale = 1f; // Reprèn el temps del joc
 
-        // Reanudar el tiempo del juego
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
+        // Restaura l'estat del cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
-    // Coroutine para hacer el fade
-    private IEnumerator FadeMenu(float targetAlpha)
-    {
-        float startAlpha = canvasGroup.alpha;
-        float timeElapsed = 0f;
-
-        // Activar la interacción con el UI
-        canvasGroup.blocksRaycasts = true;
-
-        // Realizar la transición de opacidad
-        while (timeElapsed < fadeDuration)
-        {
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / fadeDuration);
-            timeElapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        canvasGroup.alpha = targetAlpha;
-
-        // Desactivar la interacción con el UI cuando el fade termine si estamos cerrando el menú
-        if (targetAlpha == 0f)
-        {
-            canvasGroup.blocksRaycasts = false;
-            pauseMenuUI.SetActive(false);
-        }
+        // Marca el joc com a reprès
+        jocPausat = false;
     }
 }
