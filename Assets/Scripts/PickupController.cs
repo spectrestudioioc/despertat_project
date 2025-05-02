@@ -8,6 +8,8 @@ public class PickupController : MonoBehaviour
 
     public Sprite imatgePagina;  // Propietat per assignar la imatge del pickup
 
+    public AudioClip pickupSound; // Propietat per assignar Clip d'audio
+
     public bool areaPickup;
 
     private void Start()

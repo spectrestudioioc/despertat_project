@@ -15,6 +15,14 @@ using UnityEngine;
 /// </summary>
 public class ThirdPersonController : MonoBehaviour
 {
+    [Tooltip("So de la petjada del personatge")]
+    public AudioClip footstepSound;
+    [Tooltip("So del salt del personatge")]
+    public AudioClip jumpSound;
+    [Tooltip("So de l'aterratge del personatge")]
+    public AudioClip landSound;
+
+    private AudioSource audioSource;
 
     [Tooltip("Speed ​​at which the character moves. It is not affected by gravity or jumping.")]
     public float velocity = 5f;
@@ -48,6 +56,13 @@ public class ThirdPersonController : MonoBehaviour
 
     void Start()
     {
+        // Inicialització d'AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
@@ -194,6 +209,33 @@ public class ThirdPersonController : MonoBehaviour
         {
             jumpElapsedTime = 0;
             isJumping = false;
+        }
+    }
+
+    // Mètode que es crida des de l'animació per reproduir so de petjada
+    public void PlayFootstepSound()
+    {
+        if (footstepSound != null)
+        {
+            audioSource.PlayOneShot(footstepSound); // Reproduir el so de la petjada
+        }
+    }
+
+    // Mètode que es crida des de l'animació per reproduir so del salt
+    public void PlayJumpSound()
+    {
+        if (jumpSound != null)
+        {
+            audioSource.PlayOneShot(jumpSound); // Reproduir el so del salt
+        }
+    }
+
+    // Mètode que es crida des de l'animació per reproduir so d'aterratge
+    public void PlayLandSound()
+    {
+        if (landSound != null)
+        {
+            audioSource.PlayOneShot(landSound); // Reproduir el so de l'aterratge
         }
     }
 

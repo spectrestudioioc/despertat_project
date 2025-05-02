@@ -29,8 +29,17 @@ public class EnemyCollider : MonoBehaviour
         {
             // Accedim als valors del tipus d'enemic i dany des del component EnemyController
             Debug.Log($"Has entrat en contacte amb {enemyController.tipusEnemic}. Et farà {enemyController.dany} de mal.");
-            gameManager.MostraEnemicText(enemyController);
             areaEnemy = true;
+            if (enemyController.CompareTag("Immortal")) 
+            {
+                return;
+            }
+            else
+            {
+                gameManager.MostraEnemicText(enemyController);
+                
+            }
+            
         }
     }
 
@@ -63,7 +72,8 @@ public class EnemyCollider : MonoBehaviour
                 
         }
 
-        if (areaEnemy && Input.GetKeyDown(KeyCode.E)) // Comprovem si el jugador està dins del trigger i prem la tecla E
+        // Comprovem si el jugador està dins del trigger, no té el TAG Immortal i prem la tecla E
+        if (areaEnemy && Input.GetKeyDown(KeyCode.E) && !enemyController.CompareTag("Immortal")) 
         {
             Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
             gameManager.MostraEnemicInputField(enemyController);

@@ -131,6 +131,12 @@ public class EnemyController : MonoBehaviour
         // Desactiva l'enemic després de la mort
         gameObject.SetActive(false);
 
+        // Si és el GranPena, cridem al Victory() per carregar la següent escena
+        if (tipusEnemic == TipusEnemic.EnemicGranPena)
+        {
+            gameManager.Victory();
+        }
+
 
     }
     private void Update()

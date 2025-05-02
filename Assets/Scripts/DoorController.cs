@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -16,8 +17,15 @@ public class DoorController : MonoBehaviour
 
     [SerializeField] private List<RequirementSO> doorRequirements; // Requisits per obrir la porta
 
+    
+    public AudioClip doorSound; // Referència al clip d'àudio
+    private AudioSource audioSource; // Referència al component AudioSource
+
+    private bool portaOberta; // Propietat per controlar si la porta ja està oberta
+
     private void Start()
     {
+        portaOberta = false;
         areaPorta = false;
         triggerCollider = GetComponent<BoxCollider>(); // Obtenim el BoxCollider que actua com a trigger
 
@@ -26,6 +34,13 @@ public class DoorController : MonoBehaviour
         if (animationPlayer == null)
         {
             Debug.LogWarning("No s'ha trobat cap component AnimationPlayer al GameObject de la porta.");
+        }
+
+        // Asegura't que tenim el component AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Si no existeix, l'afegim automàticament
         }
 
 
@@ -53,6 +68,11 @@ public class DoorController : MonoBehaviour
 
     private void openDoor()
     {
+        // Evitem reobrir la porta si ja està oberta
+        if (portaOberta == true)
+        {
+            return; // Si la porta ja està oberta, sortim de la funció sense fer res més
+        }
         if (animationPlayer != null)
         {
             animationPlayer.Play(); // Reproduïm l’animació a través del component AnimationPlayer
@@ -61,6 +81,7 @@ public class DoorController : MonoBehaviour
             {
                 triggerCollider.enabled = false;
             }
+            portaOberta = true;
         }
     }
 
@@ -108,6 +129,15 @@ public class DoorController : MonoBehaviour
             {
                 openDoor();
             }
+        }
+    }
+
+    
+    private void OpenDoorAudioClip()
+    {
+        if (doorSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(doorSound); // Reproduïm el so només un cop
         }
     }
 }

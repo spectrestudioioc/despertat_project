@@ -21,6 +21,17 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount; // Reduïm la salut
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Evitem que la salut sigui negativa
         UpdateHealthSlider(); // Actualitzem la barra de salut
+
+        if (currentHealth <= 0)
+        {
+            Dead();
+        }
+    }
+
+    public void Dead()
+    {
+        Debug.Log("El jugador ha mort.");
+        GameManager.Instance.GameOver(); // Canvia a escena GameOver
     }
 
     public void Heal(int amount)

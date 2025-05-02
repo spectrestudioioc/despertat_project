@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\AnimationPlayer.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\RequirementInventorySO.cs" />
+    <Compile Include="Assets\Scripts\DeathZone.cs" />
     <Compile Include="Assets\Scripts\EnemyCollider.cs" />
     <Compile Include="Assets\EasyStart Third Person Controller\Scripts\Commenteds\CommentedThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />

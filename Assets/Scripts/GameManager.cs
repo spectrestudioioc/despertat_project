@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,21 +46,40 @@ public class GameManager : MonoBehaviour
     {
         AmagaPickupText(pickup);
         pickup.gameObject.SetActive(false);
+        // Reprodueix el so si s'ha assignat un clip
+        if (pickup.pickupSound != null)
+        {
+            AudioSource.PlayClipAtPoint(pickup.pickupSound, pickup.transform.position);
+        }
 
-        diariImatge.sprite = pickup.imatgePagina;  // Asigna l'Sprite del pickup a la imatge del CanvasDiari
-        MostraPaginaDiari();
-        
+        // Comprovem si és un pickup de curació mitjançant el tag
+        if (pickup.CompareTag("Medicació"))
+        {
+            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                int quantitatCura = 25;
+                playerHealth.Heal(quantitatCura);
+                Debug.Log($"Pickup de curació recollit. S'han curat {quantitatCura} punts de salut.");
+            }
+        }
+        else
+        {
+            // Només mostrem la pàgina si no és un pickup de curació
+            diariImatge.sprite = pickup.imatgePagina;
+            MostraPaginaDiari();
+        }
     }
 
     public void MostraPaginaDiari()
     {
-        
+
         // Fem visible la pàgina del diari
         diariImatge.gameObject.SetActive(true);
         diariImatge.GetComponent<Animation>().Play("CanvasDiari");
     }
 
-    
+
 
     public void MostraEnemicText(EnemyController enemic)
     {
@@ -93,8 +113,25 @@ public class GameManager : MonoBehaviour
         enemyController.ComprovarParaulaClau(userInput);
 
         // Netegem i desactivem el camp d'entrada un cop l'usuari prem Enter
-        enemicInputField.text = ""; 
+        enemicInputField.text = "";
         enemicInputField.gameObject.SetActive(false);
+    }
+
+    public void Victory()
+    {
+        // Canviem a escena Victory
+        SceneManager.LoadScene("Victory");
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverDelay());
+    }
+
+    private IEnumerator GameOverDelay()
+    {
+        yield return new WaitForSeconds(2f); // Espera 2 segons abans de carregar l'escena
+        SceneManager.LoadScene("GameOver");
     }
 }
 
