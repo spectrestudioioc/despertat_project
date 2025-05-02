@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu 1");
     }
 
     public void Credits()

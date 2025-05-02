@@ -19,7 +19,7 @@ public class SceneTransition : MonoBehaviour
         StartCoroutine(FadeOutAndLoadScene(sceneName)); // Crida des d’un botó
     }
 
-    IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         uiGroup.SetActive(false); // Amaguem la UI al principi
 
