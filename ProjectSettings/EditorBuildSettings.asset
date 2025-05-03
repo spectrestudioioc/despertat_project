@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pause.unity
     guid: c716b864403dbfc448f77b46f4d29480
+  - enabled: 1
+    path: Assets/Scenes/Video3Scene.unity
+    guid: 4313a08d9cba0e540b48aff5d207b0e6
   m_configObjects: {}
