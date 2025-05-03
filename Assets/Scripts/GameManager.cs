@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,17 +18,54 @@ public class GameManager : MonoBehaviour
 
     public Image diariImatge; // Imatge que per mostrar la pàgina del diari
 
+    public int vidaJugador; // Vida persistent entre escenes
 
+    
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject canvasGUI = transform.Find("CanvasGUI")?.gameObject;
+        if (canvasGUI != null)
+        {
+            // Amaga el CanvasGUI quan es carrega l'escena Video3Scene
+            canvasGUI.SetActive(scene.name != "Video3Scene");
+        }
+
+        // Configura el cursor segons l'escena
+        if (scene.name == "MainMenu" || scene.name == "Victory" || scene.name == "GameOver")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         else
         {
-            Destroy(gameObject);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
@@ -98,6 +136,7 @@ public class GameManager : MonoBehaviour
         enemicInputField.gameObject.SetActive(true);
         enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
         enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
+        
 
         // Eliminem listeners anteriors
         enemicInputField.onEndEdit.RemoveAllListeners();
@@ -112,6 +151,9 @@ public class GameManager : MonoBehaviour
         // Passem la paraula recollida a EnemyController per fer la comparació
         enemyController.ComprovarParaulaClau(userInput);
 
+        
+        
+
         // Netegem i desactivem el camp d'entrada un cop l'usuari prem Enter
         enemicInputField.text = "";
         enemicInputField.gameObject.SetActive(false);
@@ -121,6 +163,7 @@ public class GameManager : MonoBehaviour
     {
         // Canviem a escena Victory
         SceneManager.LoadScene("Victory");
+        vidaJugador = 100;
     }
 
     public void GameOver()
@@ -132,6 +175,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // Espera 2 segons abans de carregar l'escena
         SceneManager.LoadScene("GameOver");
+        vidaJugador = 100;
     }
 }
 

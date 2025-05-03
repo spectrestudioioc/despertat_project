@@ -53,9 +53,14 @@ public class ThirdPersonController : MonoBehaviour
     Animator animator;
     CharacterController cc;
 
+    private GameManager gameManager; // Referència al GameManager
+
 
     void Start()
     {
+
+        gameManager = GameManager.Instance; // Obtenim la instància del GameManager
+
         // Inicialització d'AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -75,12 +80,13 @@ public class ThirdPersonController : MonoBehaviour
     // Update is only being used here to identify keys and trigger animations
     void Update()
     {
-
+        
         // Input checkers
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
         inputJump = Input.GetAxis("Jump") == 1f;
         inputSprint = Input.GetAxis("Fire3") == 1f;
+
         // Unfortunately GetAxis does not work with GetKeyDown, so inputs must be taken individually
         inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
 
@@ -127,6 +133,7 @@ public class ThirdPersonController : MonoBehaviour
     // With the inputs and animations defined, FixedUpdate is responsible for applying movements and actions to the player
     private void FixedUpdate()
     {
+        
 
         // Sprinting velocity boost or crounching desacelerate
         float velocityAdittion = 0;
