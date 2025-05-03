@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Scripts_Menu\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\CheckPointManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\Rialles.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\NotificationManager.cs" />
