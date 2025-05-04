@@ -2,31 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/**
- * Component simple que permet a altres elements cridar al mètode AttToPlayerInventory (per exemple, un interactables)
- * per afegir tots els items configurats a l'inventari del jugador.
- */
+
+// Aquesta classe gestiona el Loot que incorporen els enemics, a través del mètode AddToPlayerInventory
 public class Loot : MonoBehaviour
 {
     [SerializeField] List<String> loot = new List<string>(); // Llista d'objectes que es poden recollir
 
     private Inventory _inventory; // Referència a l'inventari del jugador
 
-    /**
-     * Inicialitza la referència a l'inventari del jugador.
-     * 
-     * Com que només el jugador té inventari, es busca directament a l'escena.
-     */
+    
     private void Start()
     {
+        // Es busca si hi ha algun gameObject que tingui el component Inventory
         _inventory = FindObjectOfType<Inventory>();
     }
 
-    /**
-     * Afegeix tots els objectes configurats a l'inventari del jugador.
-     * 
-     * Després de transferir els objectes, buida la llista de loot.
-     */
+    // Mètode per afegir el Loot a l'Inventary que té el jugador
     public void AddToPlayerInventory()
     {
         foreach (String item in loot)

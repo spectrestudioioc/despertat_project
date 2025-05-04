@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static EnemyController;
 
+// Aquesta classe gestiona els triggers que fa el Player amb el detectionCollider dels enemics
 public class EnemyCollider : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
@@ -19,8 +20,9 @@ public class EnemyCollider : MonoBehaviour
         enemyController = GetComponentInParent<EnemyController>();
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager
         areaEnemy = false;
-        damageTimer = 0f;
-        damageInterval = 3f;
+
+        damageTimer = 0f; // Inicialitzem el comptador de temps
+        damageInterval = 3f; // Definim l'interval de temps per aplicar dany
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,13 +31,14 @@ public class EnemyCollider : MonoBehaviour
         {
             // Accedim als valors del tipus d'enemic i dany des del component EnemyController
             Debug.Log($"Has entrat en contacte amb {enemyController.tipusEnemic}. Et farà {enemyController.dany} de mal.");
-            areaEnemy = true;
+            areaEnemy = true; // Marquem que el jugador està dins l'àrea
             if (enemyController.CompareTag("Immortal")) 
             {
-                return;
+                return; // No fa res si l'enemic és immortal
             }
             else
             {
+                // Mostrem el text que mostra que podem interactuar amb l'enemic
                 gameManager.MostraEnemicText(enemyController);
                 
             }
@@ -50,7 +53,7 @@ public class EnemyCollider : MonoBehaviour
             // Accedim als valors del tipus d'enemic i dany des del component EnemyController
             Debug.Log($"Has sortit de l'àrea de contacte amb {enemyController.tipusEnemic}.");
             gameManager.AmagaEnemicText(enemyController);
-            areaEnemy = false;
+            areaEnemy = false; // Marquem que el jugador està fora de l'àrea
             damageTimer = 0f; // Reiniciem el temporitzador quan el jugador surt del trigger
         }
     }
@@ -76,8 +79,8 @@ public class EnemyCollider : MonoBehaviour
         if (areaEnemy && Input.GetKeyDown(KeyCode.E) && !enemyController.CompareTag("Immortal")) 
         {
             Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
-            gameManager.MostraEnemicInputField(enemyController);
-            
+            gameManager.MostraEnemicInputField(enemyController); // Mostrem el camp d'entrada per derrotar l'enemic
+
 
         }
     }

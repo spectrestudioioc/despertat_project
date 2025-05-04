@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Aquesta classe gestiona el moviment dels enemics
 public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> waypoints; // Llista de waypoints per on l'enemic es mourà
     public float speed = 1f; // Velocitat de desplaçament
-    private int currentWaypointIndex = 0;
+    private int currentWaypointIndex = 0; // Índex actual del waypoint on s'està dirigint
 
     private NavMeshAgent agent; // Referència al NavMeshAgent
     
@@ -15,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        // Comprovem si s'han assignat waypoints; si no, no fa res
         if (waypoints.Count == 0)
         {
             Debug.LogWarning("No hi ha waypoints assignats per aquest enemic!");

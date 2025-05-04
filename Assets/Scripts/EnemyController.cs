@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     private Loot loot; // Referencia a un component Loot
     private Transform playerTransform; // Referència al Transform del jugador
     public bool areaEnemic;
+
+    // Definim els diferents tipus d’enemics
     public enum TipusEnemic
     {
         EnemicOmbra,
@@ -16,10 +18,10 @@ public class EnemyController : MonoBehaviour
         EnemicGranPena
     }
 
-    public TipusEnemic tipusEnemic;
+    public TipusEnemic tipusEnemic; // Propietat per assignar el tipus d'Enemic
     public int dany;
 
-    public string paraulaClau;
+    public string paraulaClau; // Propietat que defineix (a través de l'inspector) la paraula clau que mata l'enemic
 
     private PlayerHealth playerHealth; // Referencia a un component PlayerHealth
     
@@ -35,6 +37,7 @@ public class EnemyController : MonoBehaviour
         // Assignem el Transform del jugador a partir del component PlayerHealth, si existeix
         playerTransform = playerHealth?.transform;
 
+        // Assignem el valor de dany segons el tipus d’enemic
         switch (tipusEnemic)
         {
             case TipusEnemic.EnemicOmbra:
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
+    // Mètode que rep una instància d'EnemyCollider i aplica dany al jugador
     public void TakeDamage(EnemyCollider enemyCollider)
     {
         
@@ -64,6 +67,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Comprova si la paraula introduïda pel jugador és correcta
     public void ComprovarParaulaClau(string userInput)
     {
         if (userInput.Equals(paraulaClau, StringComparison.OrdinalIgnoreCase))
@@ -74,20 +78,22 @@ public class EnemyController : MonoBehaviour
         else
         {
             Debug.Log("Paraula clau incorrecta!");
-            ParaulaIncorrecta();
+            ParaulaIncorrecta(); // Aquí es crida el mètode si s'ha fallat la paraula
         }
     }
 
+    // Mètode que s’executa si la paraula clau introduida pel jugador és correcta
     public void ParaulaCorrecta()
     {
         // Comprova si el component Loot existeix abans de fer alguna cosa amb ell
         if (loot != null)
         {
-            loot.AddToPlayerInventory();
+            loot.AddToPlayerInventory(); // Afegeix el Loot a l’inventari del jugador
         }
-        StartCoroutine(MortCombinada());
+        StartCoroutine(MortCombinada()); // Inicia mètode de desactivació de l’enemic
     }
 
+    // Mètode que s’executa si la paraula clau introduida pel jugador és incorrecta
     public void ParaulaIncorrecta()
     {
         // Aplicar dany al jugador per una paraula incorrecta
@@ -99,6 +105,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Coroutine que gestiona la mort visual de l’enemic abans de desaparèixer
     private IEnumerator MortCombinada()
     {
         SkinnedMeshRenderer rend = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -131,7 +138,7 @@ public class EnemyController : MonoBehaviour
         // Desactiva l'enemic després de la mort
         gameObject.SetActive(false);
 
-        // Si és el GranPena, cridem al Victory() per carregar la següent escena
+        // Si l'enemi és el del tipus GranPena, cridem al mètode Victory() del GameManager
         if (tipusEnemic == TipusEnemic.EnemicGranPena)
         {
             gameManager.Victory();
@@ -149,6 +156,7 @@ public class EnemyController : MonoBehaviour
 
             if (direccio != Vector3.zero)
             {
+                // Calculem la rotació desitjada (amb un gir de 180 graus per mirar enrere, ssegons l'eix Z)
                 Quaternion rotacioDesitjada = Quaternion.LookRotation(direccio) * Quaternion.Euler(0, 180f, 0);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotacioDesitjada, Time.deltaTime * 2f); // Gir suau
             }

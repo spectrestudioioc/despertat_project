@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Aquesta classe gestiona els pickups, incloent la detecció del Player i la seva recollida 
 public class PickupController : MonoBehaviour
 {
     private GameManager gameManager; // Referència a un component GameManager
@@ -22,7 +23,7 @@ public class PickupController : MonoBehaviour
         if (other.CompareTag("Player")) // Comprova si el GameObject que toca és el Player
         {
             Debug.Log("El player ha entrat al trigger del pickup!");
-            gameManager.MostraPickupText(this);
+            gameManager.MostraPickupText(this); 
             areaPickup = true;
         }
     }
@@ -42,7 +43,9 @@ public class PickupController : MonoBehaviour
         if (areaPickup && Input.GetKeyDown(KeyCode.E)) // Comprovem si el jugador està dins del trigger i prem la tecla E
         {
             Debug.Log("El jugador ha clicat la tecla E davant del pickup");
-            gameManager.RecullPickup(this);
+
+            // Li passa al GameManager la referencia concreta del pickup que estem gestionant per cridar el mètode RecullPickup
+            gameManager.RecullPickup(this); 
         }
     }
 }

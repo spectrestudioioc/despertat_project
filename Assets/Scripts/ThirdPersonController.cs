@@ -1,27 +1,22 @@
 ﻿
-using UnityEditor.VersionControl;
 using UnityEngine;
 
-/*
-    This file has a commented version with details about how each line works. 
-    The commented version contains code that is easier and simpler to read. This file is minified.
-*/
-
-
-/// <summary>
-/// Main script for third-person movement of the character in the game.
-/// Make sure that the object that will receive this script (the player) 
-/// has the Player tag and the Character Controller component.
-/// </summary>
+// Aquesta classe controla el comportament d'un personatge en tercera persona
 public class ThirdPersonController : MonoBehaviour
 {
+    // Clip d'àudio que es reprodueix quan el personatge fa una petjada
     [Tooltip("So de la petjada del personatge")]
     public AudioClip footstepSound;
+
+    // Clip d'àudio que es reprodueix quan el personatge salta
     [Tooltip("So del salt del personatge")]
     public AudioClip jumpSound;
+
+    // Clip d'àudio que es reprodueix quan el personatge aterra després de saltar
     [Tooltip("So de l'aterratge del personatge")]
     public AudioClip landSound;
 
+    // Referència al component AudioSource que permet reproduir sons
     private AudioSource audioSource;
 
     [Tooltip("Speed ​​at which the character moves. It is not affected by gravity or jumping.")]

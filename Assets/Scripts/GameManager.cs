@@ -7,22 +7,28 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
+/*
+ * Aquesta classe centralitza la gestió del joc: 
+ * mostra missatges a pantalla, gestiona la vida persistent del jugador,
+ * interaccions amb pickups i enemics, i controla els canvis d’escena
+ * */
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton per accedir fàcilment al GameManager
-    public TextMeshProUGUI pickupText;
-    public TextMeshProUGUI enemicText;
-    public TMP_InputField enemicInputField;
+    public TextMeshProUGUI pickupText; // Text per indicar que es pot recollir un objecte
+    public TextMeshProUGUI enemicText; // Text per indicar que es pot interactuar amb un enemic
+    public TMP_InputField enemicInputField; // Camp de text on l'usuari pot escriure la paraula clau
 
-    public Slider healthSlider;
+    public Slider healthSlider;  // Barra de salut del jugador
 
     public Image diariImatge; // Imatge que per mostrar la pàgina del diari
 
-    public int vidaJugador; // Vida persistent entre escenes
+    public int vidaJugador; // Vida del jugador persistent entre escenes
 
     
     private void Awake()
     {
+        // Assegura que només hi ha una instància del GameManager
         if (Instance != null)
         {
             gameObject.SetActive(false);
@@ -39,20 +45,23 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // Subscripció per escoltar quan es carrega una nova escena
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
+        // Desubscripció per evitar errors en escenes futures
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Amaga el CanvasGUI si entrem a l'escena "Video3Scene"
         GameObject canvasGUI = transform.Find("CanvasGUI")?.gameObject;
         if (canvasGUI != null)
         {
-            // Amaga el CanvasGUI quan es carrega l'escena Video3Scene
+            
             canvasGUI.SetActive(scene.name != "Video3Scene");
         }
 
@@ -83,7 +92,8 @@ public class GameManager : MonoBehaviour
     public void RecullPickup(PickupController pickup)
     {
         AmagaPickupText(pickup);
-        pickup.gameObject.SetActive(false);
+        pickup.gameObject.SetActive(false); // Desactiva l'objecte recollit
+
         // Reprodueix el so si s'ha assignat un clip
         if (pickup.pickupSound != null)
         {
@@ -97,7 +107,7 @@ public class GameManager : MonoBehaviour
             if (playerHealth != null)
             {
                 int quantitatCura = 25;
-                playerHealth.Heal(quantitatCura);
+                playerHealth.Heal(quantitatCura); // Passem el valor de quantitatCura al mètode Heal de PlayerHealth
                 Debug.Log($"Pickup de curació recollit. S'han curat {quantitatCura} punts de salut.");
             }
         }
@@ -112,9 +122,9 @@ public class GameManager : MonoBehaviour
     public void MostraPaginaDiari()
     {
 
-        // Fem visible la pàgina del diari
+        // Fem visible la pàgina del diari, juntament amb la seva animació
         diariImatge.gameObject.SetActive(true);
-        diariImatge.GetComponent<Animation>().Play("CanvasDiari");
+        diariImatge.GetComponent<Animation>().Play("CanvasDiari"); 
     }
 
 
@@ -168,6 +178,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        // Inicia una espera abans de canviar a l’escena de Game Over
         StartCoroutine(GameOverDelay());
     }
 

@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+// Aquesta classe gestiona el comportament de les portes, incloent requirements i interacció del Player
 public class DoorController : MonoBehaviour
 {
     public bool areaPorta;
@@ -51,8 +51,8 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player")) // Comprova si el GameObject que toca és el Player
         {
             Debug.Log("El player ha entrat al trigger de la porta!");
-            worldDisplay.SetActive(true);
-            areaPorta = true;
+            worldDisplay.SetActive(true); // Mostrem la interfície quan el jugador entra al trigger de la porta
+            areaPorta = true; // Propietat booleana canvia a true
         }
     }
 
@@ -61,12 +61,12 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player")) // Comprova si el GameObject que toca és el Player
         {
             Debug.Log("El player ha sortit del trigger de la porta!");
-            worldDisplay.SetActive(false);
-            areaPorta = false;
+            worldDisplay.SetActive(false); // Amaguem la interfície quan el jugador surt fora del trigger de la porta
+            areaPorta = false; // Propietat booleana canvia a false
         }
     }
 
-    private void openDoor()
+    private void openDoor() // Mètode que s'activa quan obrim la porta
     {
         // Evitem reobrir la porta si ja està oberta
         if (portaOberta == true)
@@ -76,12 +76,12 @@ public class DoorController : MonoBehaviour
         if (animationPlayer != null)
         {
             animationPlayer.Play(); // Reproduïm l’animació a través del component AnimationPlayer
-            worldDisplay.SetActive(false);
-            if (triggerCollider != null)
+            worldDisplay.SetActive(false); // Amaguem la interfície després d’obrir la porta
+            if (triggerCollider != null) 
             {
-                triggerCollider.enabled = false;
+                triggerCollider.enabled = false; // Desactivem el trigger per evitar múltiples activacions
             }
-            portaOberta = true;
+            portaOberta = true; // Marquem la porta com oberta
         }
     }
 
@@ -103,10 +103,10 @@ public class DoorController : MonoBehaviour
                 if (requirement is RequirementInventorySO inventoryRequirement)
                 {
                     string itemName = inventoryRequirement.ItemName;
-                    missatgeError = "Falta la clau: " + itemName;
-                    requerimentError.text = missatgeError;
-                    requirementDisplay.SetActive(true);
-                    notificationAnimation.Play();
+                    missatgeError = "Falta la clau: " + itemName; // Generem un missatge d'error amb el nom introduit al requirement
+                    requerimentError.text = missatgeError; // Mostrem el missatge a la UI
+                    requirementDisplay.SetActive(true); // Mostrem el panell de requisit
+                    notificationAnimation.Play(); // Reproduïm una animació de notificació
                     Debug.Log($"No tens la clau necessària: {inventoryRequirement.ItemName}");
 
                 }
@@ -127,7 +127,7 @@ public class DoorController : MonoBehaviour
             // Comprovem si els requisits es compleixen abans d'obrir la porta
             if (ValidateRequirements())
             {
-                openDoor();
+                openDoor(); // Cridem el mètode OpenDoor
             }
         }
     }

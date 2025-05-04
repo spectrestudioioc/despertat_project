@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Classe que controla el so de rialla de l'enemic quan el jugador entra en una àrea de detecció
+// Classe que gestiona el so de rialla de l'enemic quan el jugador entra en una àrea de detecció
 public class EnemyRialles : MonoBehaviour
 {
     // Referència a l'objecte AudioSource que conté el so de la rialla

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Aquesta classe gestiona la vida del jugador: Salut Màxima, Salut Actual, Prendre Mal i Curació
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100; // Salut màxima del jugador
@@ -30,9 +31,10 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthSlider(); // Actualitzem la barra de salut
     }
 
+    // Mètode que gestiona la pérdua de vida quan el jugador pren mal
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        currentHealth -= amount; // Actualitzem vida actual restant el valor rebut pel paràmetre amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthSlider();
 
@@ -43,19 +45,21 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Dead();
+            Dead(); // Cridem mètode Dead si la vida és igual o menor que 0
         }
     }
 
+    // Mètode que gestiona la mort del Player
     public void Dead()
     {
         Debug.Log("El jugador ha mort.");
-        GameManager.Instance.GameOver();
+        GameManager.Instance.GameOver(); // Cridem al mètode GameOver a través de la instància del GameManager
     }
 
+    // Mètode que gestiona l'augment de vida quan el jugador es cura
     public void Heal(int amount)
     {
-        currentHealth += amount;
+        currentHealth += amount; // Actualitzem vida actual sumant el valor rebut pel paràmetre amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthSlider();
 
@@ -65,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Mètode per gestionar la barra de salut
     private void UpdateHealthSlider()
     {
         if (gameManager != null && gameManager.healthSlider != null)
