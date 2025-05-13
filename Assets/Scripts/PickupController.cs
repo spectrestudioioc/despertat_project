@@ -13,6 +13,8 @@ public class PickupController : MonoBehaviour
 
     public bool areaPickup;
 
+    public int pickupID; // Identificador únic per a cada pickup
+
     private void Start()
     {
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager

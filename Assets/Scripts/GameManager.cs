@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
 
     public int vidaJugador; // Vida del jugador persistent entre escenes
 
-    
+    // Llista de pickups que el jugador ha recollit
+    private List<int> pickupsRecollits = new List<int>();
+
+
     private void Awake()
     {
         // Assegura que només hi ha una instància del GameManager
@@ -94,6 +97,10 @@ public class GameManager : MonoBehaviour
         AmagaPickupText(pickup);
         pickup.gameObject.SetActive(false); // Desactiva l'objecte recollit
 
+        // Afegim l'ID del pickup a la llista de pickups recollits
+        pickupsRecollits.Add(pickup.pickupID);
+        Debug.Log($"Pickup amb ID {pickup.pickupID} afegit a la llista pickupsRecollits.");
+
         // Reprodueix el so si s'ha assignat un clip
         if (pickup.pickupSound != null)
         {
@@ -127,7 +134,14 @@ public class GameManager : MonoBehaviour
         diariImatge.GetComponent<Animation>().Play("CanvasDiari"); 
     }
 
-
+    // Aquesta funció comprova si el pickup amb l'ID donat ha estat recollit
+    public bool HaRecollitPickup(int pickupID)
+    {
+        // Verifica si l'ID del pickup ha estat afegit a la llista de pickups recollits
+        bool haRecollit = pickupsRecollits.Contains(pickupID);
+        Debug.Log($"[CHECK] Pickup ID {pickupID} recollit? {haRecollit} | Total pickups recollits: {string.Join(", ", pickupsRecollits)}");
+        return haRecollit;
+    }
 
     public void MostraEnemicText(EnemyController enemic)
     {
