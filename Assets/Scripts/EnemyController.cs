@@ -10,6 +10,10 @@ public class EnemyController : MonoBehaviour
     private Transform playerTransform; // Referència al Transform del jugador
     public bool areaEnemic;
 
+    public AudioClip soMort; // Clip de so que volem reproduir quan mori
+    private AudioSource audioSource;
+
+
     // Definim els diferents tipus d’enemics
     public enum TipusEnemic
     {
@@ -52,6 +56,9 @@ public class EnemyController : MonoBehaviour
             default:
                 break;
         }
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Mètode que rep una instància d'EnemyCollider i aplica dany al jugador
@@ -114,6 +121,12 @@ public class EnemyController : MonoBehaviour
             Debug.LogWarning("SkinnedMeshRenderer no trobat al fill de l'enemic.");
             yield break;
         }
+
+        if (soMort != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(soMort);
+        }
+
         Color originalColor = rend.material.color;
         Vector3 escalaOriginal = transform.localScale;
 
