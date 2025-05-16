@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Loot.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\PistaAltell.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\CheckPointManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\IconaDiariController.cs" />

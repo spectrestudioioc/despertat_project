@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pickupText; // Text per indicar que es pot recollir un objecte
     public TextMeshProUGUI enemicText; // Text per indicar que es pot interactuar amb un enemic
     public TMP_InputField enemicInputField; // Camp de text on l'usuari pot escriure la paraula clau
+    public TextMeshProUGUI pistaAltellText; // Text per indicar les pistes de l'Altell (Nivell 2)
+
+    public TextMeshProUGUI lootAfegitText; // Text per indicar el Loot afegit
 
     public Slider healthSlider;  // Barra de salut del jugador
 
@@ -160,7 +163,9 @@ public class GameManager : MonoBehaviour
         enemicInputField.gameObject.SetActive(true);
         enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
         enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
-        
+
+        AmagaEnemicText(enemyController); // Aquí s'amaga el "Prem E"
+
 
         // Eliminem listeners anteriors
         enemicInputField.onEndEdit.RemoveAllListeners();
@@ -202,5 +207,54 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
         vidaJugador = 100;
     }
+
+    public void MostraPistaAltell()
+    {
+        if (pistaAltellText != null)
+        {
+            pistaAltellText.gameObject.SetActive(true);
+
+            Animation anim = pistaAltellText.GetComponent<Animation>();
+            if (anim != null)
+            {
+                anim.Play();
+            }
+            else
+            {
+                Debug.LogWarning("El text pistaAltell no té component Animation.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("pistaAltellText no està assignat al GameManager.");
+        }
+    }
+    public void AmagaPistaAltell()
+    {
+        StartCoroutine(PistaAltellDelay());
+    }
+
+    private IEnumerator PistaAltellDelay()
+    {
+        yield return new WaitForSeconds(10f);
+        pistaAltellText.gameObject.SetActive(false);
+    }
+
+    public void MostraMissatgeClau(string item)
+    {
+        if (lootAfegitText != null)
+        {
+            lootAfegitText.text = $"L'Enemic tenia la {item}, l'has aconseguit!";
+            lootAfegitText.gameObject.SetActive(true);
+            StartCoroutine(AmagaMissatgeClau());
+        }
+    }
+
+    private IEnumerator AmagaMissatgeClau()
+    {
+        yield return new WaitForSeconds(4f); // El missatge es mostra durant 4 segons
+        lootAfegitText.gameObject.SetActive(false);
+    }
+
 }
 

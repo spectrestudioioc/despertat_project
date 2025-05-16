@@ -9,7 +9,9 @@ public class EnemyCollider : MonoBehaviour
     private GameManager gameManager; // Referència a un component GameManager
     private EnemyController enemyController; // Referència a un component EnemyController
     private bool areaEnemy;
-    
+
+    public AudioClip clipNoPickup; // Clip d'àudio que sona quan no pugui interactuar amb l'enemic
+
 
     private float damageTimer; // Temporitzador per controlar quan aplicar el dany
     private float damageInterval; // Interval en segons per calcular quan aplicar dany
@@ -36,13 +38,19 @@ public class EnemyCollider : MonoBehaviour
             {
                 return; // No fa res si l'enemic és immortal
             }
+
+            // Aquí afegim la comprovació si el jugador té el pickup que cal per interactuar
+            if (gameManager.HaRecollitPickup(enemyController.pickupID))
+            {
+                // Mostrem el text per interactuar només si ha recollit el pickup
+                gameManager.MostraEnemicText(enemyController);
+            }
             else
             {
-                // Mostrem el text que mostra que podem interactuar amb l'enemic
-                gameManager.MostraEnemicText(enemyController);
                 
+                Debug.Log("No tens l'ítem necessari per interactuar amb aquest enemic.");
             }
-            
+
         }
     }
 
@@ -76,12 +84,21 @@ public class EnemyCollider : MonoBehaviour
         }
 
         // Comprovem si el jugador està dins del trigger, no té el TAG Immortal i prem la tecla E
-        if (areaEnemy && Input.GetKeyDown(KeyCode.E) && !enemyController.CompareTag("Immortal")) 
+        if (areaEnemy && Input.GetKeyDown(KeyCode.E) && !enemyController.CompareTag("Immortal"))
         {
-            Debug.Log("El jugador ha clicat la tecla E davant de l'Enemic");
-            gameManager.MostraEnemicInputField(enemyController); // Mostrem el camp d'entrada per derrotar l'enemic
-
-
+            if (gameManager.HaRecollitPickup(enemyController.pickupID))
+            {
+                // El jugador té el pickup, pot interactuar
+                gameManager.MostraEnemicInputField(enemyController);
+            }
+            else
+            {
+                // No té el pickup, no deixa interactuar
+                if (clipNoPickup != null)
+                {
+                    AudioSource.PlayClipAtPoint(clipNoPickup, transform.position);
+                }
+            }
         }
     }
 }

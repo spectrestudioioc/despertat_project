@@ -13,6 +13,9 @@ public class EnemyController : MonoBehaviour
     public AudioClip soMort; // Clip de so que volem reproduir quan mori
     private AudioSource audioSource;
 
+    [Tooltip("ID del pickup necessari per interactuar amb aquest enemic.")]
+    public int pickupID;
+
 
     // Definim els diferents tipus d’enemics
     public enum TipusEnemic
@@ -109,6 +112,7 @@ public class EnemyController : MonoBehaviour
             int danyIncorrecte = 25; // Dany que s'aplica per una paraula incorrecta
             playerHealth.TakeDamage(danyIncorrecte);
             Debug.Log($"El jugador ha rebut {danyIncorrecte} de dany per paraula incorrecta!");
+            gameManager.MostraEnemicText(this); // Aquí li passes el mateix enemic
         }
     }
 
