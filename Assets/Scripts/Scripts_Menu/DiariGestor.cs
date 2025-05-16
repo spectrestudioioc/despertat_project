@@ -1,17 +1,23 @@
 using UnityEngine;
 
-public class ToggleDiari : MonoBehaviour
+public class DiariGestor : MonoBehaviour
 {
-    public GameObject paginaDiari; // Inscriure pàgina de diari
+    public int pickupID;  // Identificador del pickup associat a aquesta imatge
+    public GameObject paginaDiari;  // Pàgina del diari corresponent a aquesta imatge
+    
 
-
-    // Mètode que activa i desactiva la pàgina en el event Onclick
+    // Mètode que activa i desactiva la pàgina quan es fa clic
     public void TogglePagina()
     {
-        if (paginaDiari != null)
+        // Comprova si el pickup associat ha estat recollit
+        if (GameManager.Instance.HaRecollitPickup(pickupID))
         {
-            bool estatActiu = paginaDiari.activeSelf; // Sentència que activa la pàgina si és true
-            paginaDiari.SetActive(!estatActiu); // Sentència que desactiva la pàgina si no és true (false)
+            bool estatActiu = paginaDiari.activeSelf;
+            paginaDiari.SetActive(!estatActiu);  // Activa o desactiva la pàgina
+        }
+        else
+        {
+            Debug.Log("Aquesta pàgina encara no està disponible, recull-la primer.");
         }
     }
 }

@@ -33,6 +33,12 @@ public class PauseMenu : MonoBehaviour
 
         // Marca el joc com a pausat
         jocPausat = true;
+
+        // Actualitza l'estat de les icones del diari
+        foreach (IconaDiariController icona in FindObjectsOfType<IconaDiariController>())
+        {
+            icona.ActualitzaEstat();
+        }
     }
 
     public void Reprendre()

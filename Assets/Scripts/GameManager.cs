@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pickupText; // Text per indicar que es pot recollir un objecte
     public TextMeshProUGUI enemicText; // Text per indicar que es pot interactuar amb un enemic
     public TMP_InputField enemicInputField; // Camp de text on l'usuari pot escriure la paraula clau
+    public TextMeshProUGUI pistaAltellText; // Text per indicar les pistes de l'Altell (Nivell 2)
+
+    public TextMeshProUGUI lootAfegitText; // Text per indicar el Loot afegit
 
     public Slider healthSlider;  // Barra de salut del jugador
 
@@ -25,7 +28,10 @@ public class GameManager : MonoBehaviour
 
     public int vidaJugador; // Vida del jugador persistent entre escenes
 
-    
+    // Llista de pickups que el jugador ha recollit
+    private List<int> pickupsRecollits = new List<int>();
+
+
     private void Awake()
     {
         // Assegura que només hi ha una instància del GameManager
@@ -94,6 +100,10 @@ public class GameManager : MonoBehaviour
         AmagaPickupText(pickup);
         pickup.gameObject.SetActive(false); // Desactiva l'objecte recollit
 
+        // Afegim l'ID del pickup a la llista de pickups recollits
+        pickupsRecollits.Add(pickup.pickupID);
+        Debug.Log($"Pickup amb ID {pickup.pickupID} afegit a la llista pickupsRecollits.");
+
         // Reprodueix el so si s'ha assignat un clip
         if (pickup.pickupSound != null)
         {
@@ -127,7 +137,14 @@ public class GameManager : MonoBehaviour
         diariImatge.GetComponent<Animation>().Play("CanvasDiari"); 
     }
 
-
+    // Aquesta funció comprova si el pickup amb l'ID donat ha estat recollit
+    public bool HaRecollitPickup(int pickupID)
+    {
+        // Verifica si l'ID del pickup ha estat afegit a la llista de pickups recollits
+        bool haRecollit = pickupsRecollits.Contains(pickupID);
+        Debug.Log($"[CHECK] Pickup ID {pickupID} recollit? {haRecollit} | Total pickups recollits: {string.Join(", ", pickupsRecollits)}");
+        return haRecollit;
+    }
 
     public void MostraEnemicText(EnemyController enemic)
     {
@@ -146,7 +163,9 @@ public class GameManager : MonoBehaviour
         enemicInputField.gameObject.SetActive(true);
         enemicInputField.Select(); // Això farà que el camp d'entrada es seleccionat i estigui preparat per escriure
         enemicInputField.ActivateInputField(); // Activa el camp d'entrada per escriure
-        
+
+        AmagaEnemicText(enemyController); // Aquí s'amaga el "Prem E"
+
 
         // Eliminem listeners anteriors
         enemicInputField.onEndEdit.RemoveAllListeners();
@@ -188,5 +207,54 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
         vidaJugador = 100;
     }
+
+    public void MostraPistaAltell()
+    {
+        if (pistaAltellText != null)
+        {
+            pistaAltellText.gameObject.SetActive(true);
+
+            Animation anim = pistaAltellText.GetComponent<Animation>();
+            if (anim != null)
+            {
+                anim.Play();
+            }
+            else
+            {
+                Debug.LogWarning("El text pistaAltell no té component Animation.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("pistaAltellText no està assignat al GameManager.");
+        }
+    }
+    public void AmagaPistaAltell()
+    {
+        StartCoroutine(PistaAltellDelay());
+    }
+
+    private IEnumerator PistaAltellDelay()
+    {
+        yield return new WaitForSeconds(10f);
+        pistaAltellText.gameObject.SetActive(false);
+    }
+
+    public void MostraMissatgeClau(string item)
+    {
+        if (lootAfegitText != null)
+        {
+            lootAfegitText.text = $"L'Enemic tenia la {item}, l'has aconseguit!";
+            lootAfegitText.gameObject.SetActive(true);
+            StartCoroutine(AmagaMissatgeClau());
+        }
+    }
+
+    private IEnumerator AmagaMissatgeClau()
+    {
+        yield return new WaitForSeconds(4f); // El missatge es mostra durant 4 segons
+        lootAfegitText.gameObject.SetActive(false);
+    }
+
 }
 

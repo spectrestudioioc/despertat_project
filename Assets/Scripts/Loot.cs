@@ -24,6 +24,8 @@ public class Loot : MonoBehaviour
         {
             _inventory.Add(item);
             Debug.Log($"Afegit {item} a l'inventari");
+            
+            GameManager.Instance.MostraMissatgeClau(item); // Mostrem missatge per pantalla a través del GameManager
         }
 
         loot.Clear();
