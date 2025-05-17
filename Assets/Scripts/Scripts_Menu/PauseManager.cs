@@ -1,23 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject menuPausa; // Assigna el panell de pausa des de l'Inspector
     private bool jocPausat = false;
+    private string escenaActual;
 
     void Update()
     {
-        // Comprova si la tecla "Tab" s'ha premut
-        if (Input.GetKeyDown(KeyCode.Tab))
+
+        // Comprova el nom de l'escena actual
+        string escenaActual = SceneManager.GetActiveScene().name;
+
+        // Només permet pausar si estàs a Nivell1 o Nivell2
+        if (escenaActual == "Nivell 1" || escenaActual == "Nivell 2")
         {
-            // Si el joc està pausat, es reprèn; si no, es pausa
-            if (jocPausat)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                Reprendre();
-            }
-            else
-            {
-                Pausar();
+                if (jocPausat)
+                {
+                    Reprendre();
+                }
+                else
+                {
+                    Pausar();
+                }
             }
         }
     }
