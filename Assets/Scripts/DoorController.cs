@@ -103,7 +103,7 @@ public class DoorController : MonoBehaviour
                 if (requirement is RequirementInventorySO inventoryRequirement)
                 {
                     string itemName = inventoryRequirement.ItemName;
-                    missatgeError = "Falta la clau: " + itemName; // Generem un missatge d'error amb el nom introduit al requirement
+                    missatgeError = "Falta la " + itemName; // Generem un missatge d'error amb el nom introduit al requirement
                     requerimentError.text = missatgeError; // Mostrem el missatge a la UI
                     requirementDisplay.SetActive(true); // Mostrem el panell de requisit
                     notificationAnimation.Play(); // Reproduïm una animació de notificació

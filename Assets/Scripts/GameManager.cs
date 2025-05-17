@@ -82,6 +82,19 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        // Reinicia les icones del diari del Menu Pausa en començar Nivell 1
+        if (scene.name == "Nivell 1")
+        {
+            ReiniciaPartida();
+            Debug.Log("[GameManager] Nivell 1 carregat. Actualitzant icones del diari...");
+
+            IconaDiariController[] icones = FindObjectsOfType<IconaDiariController>();
+            foreach (var icona in icones)
+            {
+                icona.ActualitzaEstat();
+            }
+        }
     }
 
     public void MostraPickupText(PickupController pickup)
@@ -256,5 +269,11 @@ public class GameManager : MonoBehaviour
         lootAfegitText.gameObject.SetActive(false);
     }
 
+    public void ReiniciaPartida()
+    {
+        pickupsRecollits.Clear();
+        vidaJugador = 100;
+        Debug.Log("Dades de partida reiniciades.");
+    }
 }
 

@@ -27038,7 +27038,7 @@ PrefabInstance:
     - target: {fileID: 9133959064308206680, guid: f61716f720d8e60488838297814678df, type: 3}
       propertyPath: doorRequirements.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: dea32b28aac03ad49b29f321c8ecfe50, type: 2}
+      objectReference: {fileID: 11400000, guid: 936a83ffa530cc24ebfd057b4da26f0c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30733,6 +30733,14 @@ PrefabInstance:
       propertyPath: paraulaClau
       value: Tristesa
       objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau1
+      value: tristesa
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau2
+      value: tristesa
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31204,6 +31212,14 @@ PrefabInstance:
     - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
       propertyPath: paraulaClau
       value: "Fr\xE0gil"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau1
+      value: "fr\xE0gil"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau2
+      value: fragil
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45178,6 +45194,14 @@ PrefabInstance:
     - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
       propertyPath: paraulaClau
       value: Plora
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau1
+      value: plora
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176633978554909629, guid: e3417112cbb544343ae45fc9f2c5ddb7, type: 3}
+      propertyPath: paraulaClau2
+      value: plora
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67800,7 +67824,8 @@ MonoBehaviour:
   pickupID: 9
   tipusEnemic: 2
   dany: 0
-  paraulaClau: ofego
+  paraulaClau1: m'ofego
+  paraulaClau2: ofego
 --- !u!135 &1865639633
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -77992,7 +78017,7 @@ PrefabInstance:
     - target: {fileID: 9133959064308206680, guid: f61716f720d8e60488838297814678df, type: 3}
       propertyPath: doorRequirements.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 2b8f924e6a934d54bb7579a66b79c0b5, type: 2}
+      objectReference: {fileID: 11400000, guid: f94d7946ddcbcfb43928f9d440c5432b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

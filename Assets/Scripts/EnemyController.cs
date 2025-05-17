@@ -28,7 +28,9 @@ public class EnemyController : MonoBehaviour
     public TipusEnemic tipusEnemic; // Propietat per assignar el tipus d'Enemic
     public int dany;
 
-    public string paraulaClau; // Propietat que defineix (a través de l'inspector) la paraula clau que mata l'enemic
+    // Propietats que defineixen la paraula clau que mata l'enemic
+    public string paraulaClau1; 
+    public string paraulaClau2;
 
     private PlayerHealth playerHealth; // Referencia a un component PlayerHealth
     
@@ -80,7 +82,7 @@ public class EnemyController : MonoBehaviour
     // Comprova si la paraula introduïda pel jugador és correcta
     public void ComprovarParaulaClau(string userInput)
     {
-        if (userInput.Equals(paraulaClau, StringComparison.OrdinalIgnoreCase))
+        if (userInput.Equals(paraulaClau1, StringComparison.OrdinalIgnoreCase) || userInput.Equals(paraulaClau2, StringComparison.OrdinalIgnoreCase))
         {
             Debug.Log("Paraula clau correcta!");
             ParaulaCorrecta(); // Aquí es crida el mètode si s'ha encertat la paraula
