@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public int vidaJugador; // Vida del jugador persistent entre escenes
 
+    public DamageFlash damageFlash; // Referència al component que fa el flash de dany
+
     // Llista de pickups que el jugador ha recollit
     private List<int> pickupsRecollits = new List<int>();
 

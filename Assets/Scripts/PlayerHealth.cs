@@ -10,13 +10,6 @@ public class PlayerHealth : MonoBehaviour
 
     private GameManager gameManager; // Referència al Singleton GameManager
 
-    public CanvasGroup damageFlashCanvas; // CanvasGroup del UI dany
-    public float flashDuration = 0.1f;    // Temps entre parpeig (modificable a l'Inspector)
-    public int flashCount = 3;           // Vegades que es reprodueix el parpeig (modificable a l'Inspector)
-
-    private Coroutine flashCoroutine;    // Evita superposicions de parpeig
-
-
     private void Start()
     {
         gameManager = GameManager.Instance; // Obtenim la instància del GameManager
@@ -40,24 +33,13 @@ public class PlayerHealth : MonoBehaviour
    
 
 
-    private IEnumerator FlashDamage()
-    {
-        for (int i = 0; i < flashCount; i++)
-        {
-            damageFlashCanvas.alpha = 1f; // Mostrar Parpeig al canvas
-            yield return new WaitForSeconds(flashDuration);
-            damageFlashCanvas.alpha = 0f; // Amagar parpeig al canvas
-            yield return new WaitForSeconds(flashDuration);
-        }
-    }
-
-
     // Mètode que gestiona la pérdua de vida quan el jugador pren mal
     public void TakeDamage(int amount)
     {
         currentHealth -= amount; // Actualitzem vida actual restant el valor rebut pel paràmetre amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthSlider();
+        GameManager.Instance.damageFlash.TriggerFlash();
 
         if (gameManager != null)
         {
@@ -69,15 +51,7 @@ public class PlayerHealth : MonoBehaviour
             Dead(); // Cridem mètode Dead si la vida és igual o menor que 0
         }
 
-        if (damageFlashCanvas != null)
-        {
-            if (flashCoroutine != null)
-            {
-                StopCoroutine(flashCoroutine); // Evita que hi hagin parpeig simultani entre diferents enemics
-            }
-            flashCoroutine = StartCoroutine(FlashDamage());
-        }
-
+        
     }
 
     // Mètode que gestiona la mort del Player

@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\AudioEnemics.cs" />
     <Compile Include="Assets\Scripts\AnimationPlayer.cs" />
+    <Compile Include="Assets\Scripts\DamageFlash.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_Menu\VideoTransition.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\RequirementInventorySO.cs" />
