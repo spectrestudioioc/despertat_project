@@ -65,16 +65,22 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Amaga el CanvasGUI si entrem a l'escena "Video3Scene"
+        // Amaga el CanvasGUI si entrem a les següents escenes
         GameObject canvasGUI = transform.Find("CanvasGUI")?.gameObject;
         if (canvasGUI != null)
         {
-            
-            canvasGUI.SetActive(scene.name != "Video3Scene" && scene.name != "Outro" && scene.name != "MainMenu" && scene.name != "GameOver");
+
+            canvasGUI.SetActive(
+            scene.name != "MainMenu" &&
+            scene.name != "GameOver" &&
+            scene.name != "Outro" &&
+            scene.name != "Opcions" &&
+            scene.name != "Credits"
+)           ;
         }
 
         // Configura el cursor segons l'escena
-        if (scene.name == "MainMenu" || scene.name == "Outro" || scene.name == "GameOver")
+        if (scene.name == "MainMenu" || scene.name == "Outro" || scene.name == "GameOver" || scene.name == "Opcions" || scene.name == "Credits")
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
