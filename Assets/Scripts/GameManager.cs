@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         if (canvasGUI != null)
         {
             
-            canvasGUI.SetActive(scene.name != "Video3Scene");
+            canvasGUI.SetActive(scene.name != "Video3Scene" && scene.name != "Outro" && scene.name != "MainMenu" && scene.name != "GameOver");
         }
 
         // Configura el cursor segons l'escena
