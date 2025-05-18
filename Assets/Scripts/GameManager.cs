@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Configura el cursor segons l'escena
-        if (scene.name == "MainMenu" || scene.name == "Victory" || scene.name == "GameOver")
+        if (scene.name == "MainMenu" || scene.name == "Outro" || scene.name == "GameOver")
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         // Canviem a escena Victory
-        SceneManager.LoadScene("Victory");
+        SceneManager.LoadScene("Outro");
         vidaJugador = 100;
     }
 
