@@ -15453,6 +15453,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 643571433209198481, guid: 1e5b444de424c2444ac34a788a517584, type: 3}
+      propertyPath: m_DampingWhenOccluded
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2618938124518569895, guid: 1e5b444de424c2444ac34a788a517584, type: 3}
       propertyPath: m_LocalPosition.x
       value: 57.587227

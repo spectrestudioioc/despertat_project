@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
@@ -96,12 +96,12 @@ MonoBehaviour:
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.27
+  m_CameraRadius: 0
   m_Strategy: 1
-  m_MaximumEffort: 4
-  m_SmoothingTime: 1
-  m_Damping: 0.1
-  m_DampingWhenOccluded: 0.1
+  m_MaximumEffort: 1
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!1 &3349356237436767049
 GameObject:
@@ -266,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 9203788824894756135}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588186, y: 0, z: 0, w: 0.965926}
-  m_LocalPosition: {x: -54.808437, y: 45.959602, z: 51.14434}
+  m_LocalPosition: {x: -57.587227, y: 47.34858, z: 32.84658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
