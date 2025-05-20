@@ -27105,6 +27105,10 @@ PrefabInstance:
       value: -0.085
       objectReference: {fileID: 0}
     - target: {fileID: 4144083663319610690, guid: f61716f720d8e60488838297814678df, type: 3}
+      propertyPath: m_text
+      value: Prem E per Obrir
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144083663319610690, guid: f61716f720d8e60488838297814678df, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: cbc6573bd67fcf84faaf2065e78e2b3f, type: 2}
@@ -75628,6 +75632,14 @@ PrefabInstance:
     - target: {fileID: 4293341974001009300, guid: f61716f720d8e60488838297814678df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 1.7708334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300485373884746881, guid: f61716f720d8e60488838297814678df, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cbc6573bd67fcf84faaf2065e78e2b3f, type: 2}
+    - target: {fileID: 7300485373884746881, guid: f61716f720d8e60488838297814678df, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9133959064308206680, guid: f61716f720d8e60488838297814678df, type: 3}
       propertyPath: doorSound

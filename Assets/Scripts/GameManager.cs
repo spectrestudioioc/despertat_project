@@ -5,7 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
+
 
 /*
  * Aquesta classe centralitza la gestió del joc: 
@@ -75,8 +75,9 @@ public class GameManager : MonoBehaviour
             scene.name != "GameOver" &&
             scene.name != "Outro" &&
             scene.name != "Opcions" &&
-            scene.name != "Credits"
-)           ;
+            scene.name != "Credits" &&
+            scene.name != "Video3Scene"
+            );
         }
 
         // Configura el cursor segons l'escena
