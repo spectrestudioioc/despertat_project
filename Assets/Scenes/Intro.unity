@@ -404,7 +404,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616919100}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 06a2dff2bae430a44b367fda6746793b, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 4510da2429bd6b540b5fc5613af5f621, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1947568238}
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 616919102}
   skipButton: {fileID: 837510223}
-  delayBeforeShowingButton: 23
+  delayBeforeShowingButton: 6
 --- !u!114 &628377252 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1406595101089277482, guid: 4f0f8da00fa69ef48abb340bdcfb28aa, type: 3}
